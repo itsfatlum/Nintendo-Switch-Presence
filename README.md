@@ -68,8 +68,7 @@ If no sensors are visible: double-check the presence URL, confirm presence/play 
 ## Troubleshooting
 - **No sensors after adding:** Ensure the presence URL is correct and reachable from your Home Assistant instance. Check Home Assistant logs for errors.  
 - **Playtime missing:** Confirm your Switch play activity is shared with the presence user (Play Activity Settings).  
-- **Presence shows OFFLINE when you are online:** Verify friend/presence sharing settings on the Switch and that the presence user is allowed to view your presence.  
-- **Icon not showing in HACS:** Make sure `icon.png` is in `custom_components/nintendo_switch_status/` and the repo is public. Browser/CDN caching can delay updates (clear cache or wait up to 24 hours for CDN).  
+- **Presence shows OFFLINE when you are online:** Verify friend/presence sharing settings on the Switch and that the presence user is allowed to view your presence.    
 - **Errors on setup:** Check HA logs for tracebacks. Common fixes include correcting the presence URL, ensuring HA can reach the API, and fixing missing dependencies in `manifest.json`.
 
 
