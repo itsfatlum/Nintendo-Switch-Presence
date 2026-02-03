@@ -1,6 +1,6 @@
 {
   "name": "Nintendo Switch Status",
   "content_in_root": false,
-  "domains": ["nintendo_switch_status"],
+  "domains": ["nintendo_switch_presence"],
   "country": "DE"
 }
