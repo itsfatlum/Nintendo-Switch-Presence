@@ -72,10 +72,38 @@ class NintendoSwitchGameSensor(BaseNintendoSwitchSensor):
 
     @property
     def extra_state_attributes(self) -> dict:
-        """Provide entity_picture when game image is available."""
+        """Provide entity_picture when game image is available and include playtime/platform info."""
         game = (self.coordinator.data or {}).get("friend", {}).get("presence", {}).get("game")
-        url = game.get("imageUri") if game else None
-        return {"entity_picture": url} if url else {}
+        attrs = {}
+        if not game:
+            return {}
+
+        # entity picture
+        url = game.get("imageUri")
+        if url:
+            attrs["entity_picture"] = url
+
+        # total playtime in minutes and hours (if available)
+        minutes = game.get("totalPlayTime")
+        if minutes is not None:
+            attrs["total_playtime_minutes"] = minutes
+            try:
+                attrs["total_playtime_hours"] = round(minutes / 60, 2)
+            except Exception:
+                pass
+
+        # platform number and friendly display (presence-level field)
+        platform_num = (self.coordinator.data or {}).get("friend", {}).get("presence", {}).get("platform")
+        if platform_num is not None:
+            attrs["platform_number"] = platform_num
+            if platform_num == 1:
+                attrs["platform"] = "Nintendo Switch 1"
+            elif platform_num == 2:
+                attrs["platform"] = "Nintendo Switch 2"
+            else:
+                attrs["platform"] = f"Platform {platform_num}"
+
+        return attrs
 
     @property
     def icon(self) -> Optional[str]:
