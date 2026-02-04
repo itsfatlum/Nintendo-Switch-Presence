@@ -243,6 +243,13 @@ class Splatoon3Sensor(BaseNintendoSwitchSensor):
         
         vs_mode = splatoon3.get("vsMode")
         if vs_mode:
-            attrs["Game Mode"] = vs_mode.get("name")
+            attrs["Battle Mode"] = vs_mode.get("name")
+        
+        # Add Game Mode from vsRule
+        splatoon3_vs_setting = (self.coordinator.data or {}).get("splatoon3_vs_setting")
+        if splatoon3_vs_setting:
+            vs_rule = splatoon3_vs_setting.get("vsRule")
+            if vs_rule:
+                attrs["Game Mode"] = vs_rule.get("name")
         
         return attrs
