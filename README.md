@@ -7,21 +7,23 @@ Nintendo Switch Presence is a small Home Assistant custom integration that uses 
 
 ---
 
-## Quick Start (required)
+## Prerequisites ✅
+Before getting started, make sure you have the following:
+
+- **Discord Account** - Required to join the nxapi support server and access the registration service
+- **Home Assistant** - Ensure it's a supported version for custom integrations
+- **HACS** (optional) - Makes installation easier, or you can manually access `config/custom_components`
+- **Nintendo Switch Account** - The account you want to track presence for
+- **nxapi-auth Account** - Register at https://nxapi-auth.fancy.org.uk (requires Discord server membership)
+
+---
+
+## Quick Start
 1. Join the support [Discord](https://discord.com/invite/4D82rFkXRv) and register at https://nxapi-auth.fancy.org.uk.
 2. Add your Switch account on the nxapi site and copy your presence URL.
 3. In Home Assistant go to **Settings → Devices & Services → Add Integration → Nintendo Switch Presence**, paste the presence URL and finish setup.
 
-> Tip: Keep your presence URL private — treat it like a password.
-
 ---
-
-## What you need ✅
-- Home Assistant (ensure it’s a supported version for custom integrations)
-- HACS (optional, makes installation easier) or manual installation access to `config/custom_components`
-- An nxapi-auth account and a Switch account added to it
-- On your Switch: make sure **Presence** is shared with the presence user. Share **Play Activity** if you want playtime to appear.
-
 
 ## Register with nxapi-auth (required)
 1. Join the support Discord server: https://discord.com/invite/4D82rFkXRv
@@ -57,12 +59,44 @@ If no sensors are visible: double-check the presence URL, confirm presence/play 
 
 
 ## Available Sensors
-- Status (ONLINE / OFFLINE)
-- Current Game (Name & Game Icon)
-- Profile (Name & Profile Picture)
-- Nintendo Switch Account ID
-- Total Playtime (for the current game)
-- Platform (Nintendo Switch 1 / Nintendo Switch 2)
+
+### Profile Sensor
+Shows your Nintendo Switch profile information.
+- **State**: Current online status (Online/Offline)
+- **Icon**: Nintendo Switch MDI icon (with optional profile picture as entity image)
+- **Attributes**:
+  - `Account Name` - Your Switch account name
+  - `Status` - Online or Offline status
+  - `Game Name` - Currently playing game (if any)
+  - `Game Image URL` - URL to the game cover image
+  - `Total Play Time` - Total playtime in hours for current game
+  - `First Played At` - ISO timestamp of when the game was first played
+  - `Platform` - Nintendo Switch 1 or Nintendo Switch 2
+
+### Game Sensor
+Shows detailed information about your currently playing game.
+- **State**: Current game name (or empty if not playing)
+- **Icon**: Nintendo Switch MDI icon (with optional game cover as entity image)
+- **Attributes**:
+  - `Name` - Your Switch account name
+  - `Game Name` - Currently playing game title
+  - `Game Image URL` - URL to the game cover image
+  - `Total Play Time` - Total playtime in hours
+  - `First Played At` - ISO timestamp of when first played
+  - `Platform` - Nintendo Switch 1 or Nintendo Switch 2
+  - `Battle Mode` - Splatoon 3 battle mode (when playing Splatoon 3)
+  - `Game Mode` - Splatoon 3 game mode/rule (when playing Splatoon 3)
+
+### Splatoon 3 Sensor (Optional)
+Shows Splatoon 3 specific information (only if enabled in setup).
+- **State**: Battle mode when playing Splatoon 3, or general online status
+- **Icon**: Water droplet MDI icon (shows Splatoon 3 game icon when actively playing)
+- **Attributes**:
+  - `Nickname` - Your Splatoon 3 player nickname
+  - `Player Name` - Your Splatoon 3 player name
+  - `Battle Mode` - Current battle mode in Splatoon 3
+  - `Game Mode` - Current game mode/rule in Splatoon 3
+  - `Platform` - Nintendo Switch 1 or Nintendo Switch 2
 
 
 ## Troubleshooting
