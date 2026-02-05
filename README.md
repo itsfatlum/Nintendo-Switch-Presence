@@ -18,13 +18,6 @@ Before getting started, make sure you have the following:
 
 ---
 
-## Quick Start
-1. Join the support [Discord](https://discord.com/invite/4D82rFkXRv) and register at https://nxapi-auth.fancy.org.uk.
-2. Add your Switch account on the nxapi site and copy your presence URL.
-3. In Home Assistant go to **Settings → Devices & Services → Add Integration → Nintendo Switch Presence**, paste the presence URL and finish setup.
-
----
-
 ## Register with nxapi-auth (required)
 1. Join the support Discord server: https://discord.com/invite/4D82rFkXRv
    > **Important:** This service is only available to members of this server. If you leave the server you may be removed from the presence server.
